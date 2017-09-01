@@ -604,7 +604,10 @@ sup {
     opacity: 1; }
     .fp-section.active .inside-content {
       opacity: 1;
-      transform: translateY(0) scale(1); }
+      transform: translateY(0) scale(1); 
+      align-self: start;
+      padding-top: 100px;
+    }
   .fp-section.color-1 {
     background: #263248 !important; }
   .fp-section.color-2 {
@@ -863,23 +866,23 @@ p.notify-valid {
   max-width: 8rem; }
 
 .getting-started-container {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  display: flex;
+  font-size: 50px;
+  font-weight: 800;
 }
 
-.getting-started-small {
-  width: 28%;
-  display:inline-block;
-  float: left;
-  margin: 0 1% 1% 0;
+.getting-started {
+  flex: 1;
+  padding: 0 10px;
 }
 
-.getting-started-large {
-  width: 28%;
-  display:inline-block;
-  float: left;
-  margin: 0 1% 1% 0;
+.getting-started-label {
+  display: flex; 
+  justify-content: center;
+}
+
+.getting-started-begin-label {
+  color: #6DCFF6;
 }
 
 .inside-content {
