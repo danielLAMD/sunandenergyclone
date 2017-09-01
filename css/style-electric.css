@@ -862,12 +862,32 @@ p.notify-valid {
   position: relative;
   max-width: 8rem; }
 
+.getting-started-container {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+.getting-started-small {
+  width: 28%;
+  display:inline-block;
+  float: left;
+  margin: 0 1% 1% 0;
+}
+
+.getting-started-large {
+  width: 28%;
+  display:inline-block;
+  float: left;
+  margin: 0 1% 1% 0;
+}
+
 .inside-content {
   position: relative;
   z-index: 10;
   left: 0;
   visibility: visible;
-  padding: 0 100px;
+  padding: 0 20px;
   text-align: center; }
   .inside-content.double-col {
     text-align: left; }
@@ -879,6 +899,9 @@ p.notify-valid {
       font-weight: 700; }
       .inside-content .text li .fa {
         color: #6DCFF6; }
+
+
+
 
 /* ------------------------------------- */
 /* CONTACT FORM ........................ */
