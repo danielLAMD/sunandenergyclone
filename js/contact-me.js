@@ -20,18 +20,16 @@ $(document).ready(function() {
 
         var user_name          = $('input[name=name]').val();
         var user_email         = $('input[name=email-address]').val();
-        var user_reason        = $('select[name=reason]').val();
+        var user_phone        = $('select[name=phone-number]').val();
         var user_message       = $('textarea[name=message]').val();
-        var user_newsletter    = $('input[name=newsletter]').val();
        
         // Datadata to be sent to server
         post_data = {
             'userChecking':user_checking,
             'userName':user_name,
             'userEmail':user_email,
-            'userSubject':user_reason,
-            'userMessage':user_message,
-            'userNewsletter':user_newsletter,
+            'userSubject':user_phone,
+            'userMessage':user_message
         };
        
         // Ajax post data to server

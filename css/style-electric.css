@@ -865,6 +865,19 @@ p.notify-valid {
   position: relative;
   max-width: 8rem; }
 
+.about-content {
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  padding: 140px;
+}
+
+.about-subscribe {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .getting-started-container {
   display: flex;
   font-size: 50px;

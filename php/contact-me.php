@@ -6,9 +6,8 @@ if($_POST) {
 
     $name = $_POST["userName"];
     $email = $_POST["userEmail"];
-    $reason = $_POST["userSubject"];
+    $phone = $_POST["userSubject"];
     $message = $_POST["userMessage"];
-    $newsletter = $_POST["userNewsletter"];
    
     // Use PHP To Detect An Ajax Request
     if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
@@ -24,7 +23,7 @@ if($_POST) {
     }
    
     // Checking if the $_POST vars well provided, Exit if there is one missing
-    if(!isset($_POST["userChecking"]) || !isset($_POST["userName"]) || !isset($_POST["userEmail"]) || !isset($_POST["userSubject"]) || !isset($_POST["userMessage"]) || !isset($_POST["userNewsletter"])) {
+    if(!isset($_POST["userChecking"]) || !isset($_POST["userName"]) || !isset($_POST["userEmail"]) || !isset($_POST["userSubject"]) || !isset($_POST["userMessage"])) {
         
         $output = json_encode(array('type'=>'error', 'text' => '<i class="icon ion-close-round"></i> Input fields are empty!'));
         die($output);
@@ -133,7 +132,7 @@ if($_POST) {
                                             <td width='100%' align='left' style='padding-bottom:20px;'>
                                                 <div>
                                                     <h3>Subject</h3>
-                                                    <p>$reason</p>
+                                                    <p>$phone</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -142,14 +141,6 @@ if($_POST) {
                                                 <div>
                                                     <h3>Message</h3>
                                                     <p>$message</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width='100%' align='left' style='padding-bottom:0px;'>
-                                                <div>
-                                                    <h3>Wants to subscribe to your Newsletter?</h3>
-                                                    <p><strong>$newsletter</strong></p>
                                                 </div>
                                             </td>
                                         </tr>
