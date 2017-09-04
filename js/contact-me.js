@@ -20,7 +20,7 @@ $(document).ready(function() {
 
         var user_name          = $('input[name=name]').val();
         var user_email         = $('input[name=email-address]').val();
-        var user_phone        = $('select[name=phone-number]').val();
+        var user_phone        = $('input[name=phone-number]').val();
         var user_message       = $('textarea[name=message]').val();
        
         // Datadata to be sent to server

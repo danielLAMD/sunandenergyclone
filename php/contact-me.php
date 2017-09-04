@@ -1,8 +1,8 @@
 <?php
 if($_POST) {
 
-    $to_Email = 'myemail@email.com'; // Write your email here to receive the form submissions
-    $subject = 'New message from MOON'; // Write the subject you'll see in your inbox
+    $to_Email = 'support@sunandenergy.com'; // Write your email here to receive the form submissions
+    $subject = 'New message from Sun & Energy'; // Write the subject you'll see in your inbox
 
     $name = $_POST["userName"];
     $email = $_POST["userEmail"];
@@ -60,7 +60,7 @@ if($_POST) {
     // Proceed with PHP email
     $headers = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";
-    $headers .= 'From: MOON Template <noreply@yourdomain.com>' . "\r\n";
+    $headers .= 'From: Sun & Energy <noreply@sunandenergy.com>' . "\r\n";
     $headers .= 'Reply-To: '.$_POST["userEmail"]."\r\n";
     
     'X-Mailer: PHP/' . phpversion();
@@ -131,7 +131,7 @@ if($_POST) {
                                         <tr>
                                             <td width='100%' align='left' style='padding-bottom:20px;'>
                                                 <div>
-                                                    <h3>Subject</h3>
+                                                    <h3>Phone Number</h3>
                                                     <p>$phone</p>
                                                 </div>
                                             </td>
@@ -147,9 +147,6 @@ if($_POST) {
                                     </table>
                                 </div>
 
-                                <div style='margin-top:30px;text-align:center;color:#b3b3b3'>
-                                    <p style='font-size:12px;'>2017-2020 ThemeHelite®, All Rights Reserved.</p>
-                                </div>
                             </td>
                         </tr>
                     </table>
@@ -167,8 +164,55 @@ if($_POST) {
         die($output);
         
     } else {
-        $output = json_encode(array('type'=>'message', 'text' => '<span><i class="icon ion-checkmark-round"></i></span><strong>Hello '.$_POST["userName"] .'!</strong><br>Your message has been sent, we will get back to you asap !'));
-        die($output);
+
+        $STORE_MODE = "mailchimp";
+
+        // MailChimp API Key findable in your Mailchimp's dashboard
+        $API_KEY =  "79013bb6b24b2b032030786a08979cc3-us15";
+                     
+        // MailChimp List ID  findable in your Mailchimp's dashboard
+        $LIST_ID =  "1ff8c93d9d";
+         
+        require('MailChimp.php');
+
+        if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["userEmail"])) {
+
+            $emailFor = $_POST["userEmail"];
+            
+            header('HTTP/1.1 200 OK');
+            header('Status: 200 OK');
+            header('Content-type: application/json');
+
+            // Checking if the email writing is good
+            if(filter_var($emailFor, FILTER_VALIDATE_EMAIL)) {
+                $MailChimp = new \Drewm\MailChimp($API_KEY);
+                    
+                $result = $MailChimp->call('lists/subscribe', array(
+                            'id'                => $LIST_ID,
+                            'email'             => array('email'=>$emailFor),
+                            'double_optin'      => false,
+                            'update_existing'   => true,
+                            'replace_interests' => false,
+                            'send_welcome'      => true,
+                        ));     
+        
+                // SUCCESS SENDING
+                if($result["email"] == $emailFor) {        
+                    $output = json_encode(array('type'=>'message', 'text' => '<span><i class="icon ion-checkmark-round"></i></span><strong>Hello '.$_POST["userName"] .'!</strong><br>Your message has been sent, we will get back to you asap !'));
+                    die($output);
+                } else {
+                    $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail configuration.'));
+                    die($output);
+                }
+            // ERROR DURING THE VALIDATION 
+            } else {
+                $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail configuration.'));
+                die($output);
+            }
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+            header('Status: 403 Forbidden');
+        }
     }
 }
 ?>
