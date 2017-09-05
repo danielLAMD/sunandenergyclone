@@ -201,12 +201,12 @@ if($_POST) {
                     $output = json_encode(array('type'=>'message', 'text' => '<span><i class="icon ion-checkmark-round"></i></span><strong>Hello '.$_POST["userName"] .'!</strong><br>Your message has been sent, we will get back to you asap !'));
                     die($output);
                 } else {
-                    $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail configuration.'));
+                    $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your mailchimp configuration.'));
                     die($output);
                 }
             // ERROR DURING THE VALIDATION 
             } else {
-                $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail configuration.'));
+                $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail validation configuration.'));
                 die($output);
             }
         } else {
