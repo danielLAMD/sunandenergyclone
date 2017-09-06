@@ -253,7 +253,7 @@ if($_POST) {
      $STORE_MODE = "mailchimp";
 
     // MailChimp API Key findable in your Mailchimp's dashboard
-    $API_KEY =  "79013bb6b24b2b032030786a08979cc3-us15";
+    $API_KEY =  "16ae542aba422a2a2cc3ea391921186a-us15";
                  
     // MailChimp List ID  findable in your Mailchimp's dashboard
     $LIST_ID =  "1ff8c93d9d";
