@@ -154,67 +154,6 @@ if($_POST) {
             </tr>
         </table>
     </body>";
-/*    
-    $Mailsending = @mail($to_Email, $subject, $emailcontent, $headers);
-   
-    if(!$Mailsending) {
-        
-        //If mail couldn't be sent output error. Check your PHP email configuration (if it ever happens)
-        $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail configuration.'));
-        die($output);
-        
-    } else {
-
-        $STORE_MODE = "mailchimp";
-
-        // MailChimp API Key findable in your Mailchimp's dashboard
-        $API_KEY =  "79013bb6b24b2b032030786a08979cc3-us15";
-                     
-        // MailChimp List ID  findable in your Mailchimp's dashboard
-        $LIST_ID =  "1ff8c93d9d";
-         
-        require('MailChimp.php');
-
-        if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["userEmail"])) {
-
-            $emailFor = $_POST["userEmail"];
-            
-            header('HTTP/1.1 200 OK');
-            header('Status: 200 OK');
-            header('Content-type: application/json');
-
-            // Checking if the email writing is good
-            if(filter_var($emailFor, FILTER_VALIDATE_EMAIL)) {
-                $MailChimp = new \Drewm\MailChimp($API_KEY);
-                    
-                $result = $MailChimp->call('lists/subscribe', array(
-                            'id'                => $LIST_ID,
-                            'email'             => array('email'=>$emailFor),
-                            'double_optin'      => false,
-                            'update_existing'   => true,
-                            'replace_interests' => false,
-                            'send_welcome'      => true,
-                        ));     
-        
-                // SUCCESS SENDING
-                if($result["email"] == $emailFor) {        
-                    $output = json_encode(array('type'=>'message', 'text' => '<span><i class="icon ion-checkmark-round"></i></span><strong>Hello '.$_POST["userName"] .'!</strong><br>Your message has been sent, we will get back to you asap !'));
-                    die($output);
-                } else {
-                    $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your mailchimp configuration.'));
-                    die($output);
-                }
-            // ERROR DURING THE VALIDATION 
-            } else {
-                $output = json_encode(array('type'=>'error', 'text' => '<span><i class="icon ion-close-round"></i></span>Oops! Looks like something went wrong<br>Please check your PHP mail validation configuration.'));
-                die($output);
-            }
-        } else {
-            header('HTTP/1.1 403 Forbidden');
-            header('Status: 403 Forbidden');
-        }
-    }
-*/
 
 
     $url = 'https://api.sendgrid.com/';
@@ -252,8 +191,8 @@ if($_POST) {
 
      $STORE_MODE = "mailchimp";
 
-    // MailChimp API Key findable in your Mailchimp's dashboard
-    $API_KEY =  "16ae542aba422a2a2cc3ea391921186a-us15";
+     // MailChimp API Key findable in your Mailchimp's dashboard
+    $API_KEY =  "";
                  
     // MailChimp List ID  findable in your Mailchimp's dashboard
     $LIST_ID =  "1ff8c93d9d";
@@ -270,7 +209,7 @@ if($_POST) {
 
         // Checking if the email writing is good
         if(filter_var($emailFor, FILTER_VALIDATE_EMAIL)) {
-            $MailChimp = new \Drewm\MailChimp($API_KEY);
+            $MailChimp = new \Drewm\MailChimp();
                 
             $result = $MailChimp->call('lists/subscribe', array(
                         'id'                => $LIST_ID,

@@ -25,9 +25,10 @@ class MailChimp
      * Create a new instance
      * @param string $api_key Your MailChimp API key
      */
-    function __construct($api_key)
+    function __construct()
     {
-        $this->api_key = $api_key;
+        //$this->api_key = $api_key;
+        $this->api_key = "e8533d1a6a9a8ae7c5884981bd653bd9-us15";
         list(, $datacentre) = explode('-', $this->api_key);
         $this->api_endpoint = str_replace('<dc>', $datacentre, $this->api_endpoint);
     }
