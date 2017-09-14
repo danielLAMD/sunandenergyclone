@@ -896,6 +896,9 @@ p.notify-valid {
 
 .getting-started-begin-label {
   color: #6DCFF6;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .inside-content {
